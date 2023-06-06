@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input id="inputForm">
+<button id="btn">Клик</button>
+<div id="out"></div>
+
+<script type="text/javascript">
+
+    let btn = document.querySelector('#btn');
+    let inputForm = document.querySelector('#inputForm');
+    let out = document.querySelector('#out');
+
+    btn.onclick = function () {
+        if (inputForm.value >= 100) {
+            out.innerHTML = inputForm.value;
+        } else {
+            console.log(inputForm.value);
+            out.innerHTML = "";
+        }
+        inputForm.value = '';
+    }
+
+</script>
+</body>
+</html>
