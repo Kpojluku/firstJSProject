@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script type="text/javascript">
+
+    let param1 = "str";
+    let param2 = prompt("Введите строку");
+    switch (param2) {
+        case param1:
+            console.log("Значения совпадают");
+            break;
+        default:
+            console.log("Значения не совпадают");
+    }
+
+    const month = parseInt(prompt("Введите номер месяца:"));
+
+    switch (true) {
+        case (month >= 1 && month < 3):
+            console.log("Зима");
+            break;
+        case (month >= 3 && month < 6):
+            console.log("Весна");
+            break;
+        case (month >= 6 && month < 9):
+            console.log("Лето");
+            break;
+        case (month >= 9 && month < 12):
+            console.log("Осень");
+            break;
+        default:
+            console.log("Введено неверное значение");
+    }
+
+    let a = 1;
+    let b = null;
+    let c = 2;
+
+    let result = a ?? b ?? c;
+    console.log(result);
+
+</script>
+
+</body>
+</html>
