@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input id="inputForm1">
+<button id="plus" style="display:inline;margin-left:10px;margin-right:10px">+</button>
+<button id="minus" style="display:inline;margin-left:10px;margin-right:10px">-</button>
+<button id="multiply" style="display:inline;margin-left:10px;margin-right:10px">*</button>
+<button id="division" style="display:inline;margin-left:10px;margin-right:10px">/</button>
+<input id="inputForm2">
+<br><br/>
+<div id="out"></div>
+
+
+<script type="text/javascript">
+
+    let inputForm1 = document.querySelector('#inputForm1');
+    let inputForm2 = document.querySelector('#inputForm2');
+    let plus = document.querySelector('#plus');
+    let minus = document.querySelector('#minus');
+    let multiply = document.querySelector('#multiply');
+    let division = document.querySelector('#division');
+    let out = document.querySelector('#out');
+
+    plus.onclick = function() { plusFunc(inputForm1, inputForm2 ); };
+    minus.onclick = function() { minusFunc(inputForm1, inputForm2 ); };
+    multiply.onclick = function() { multiplyFunc(inputForm1, inputForm2 ); };
+    division.onclick = function() { divisionFunc(inputForm1, inputForm2 ); };
+
+    function plusFunc(a, b){
+        out.innerHTML = Number(a.value) + Number(b.value) ;
+    }
+    function minusFunc(a, b){
+        out.innerHTML = Number(a.value) - Number(b.value) ;
+    }
+    function multiplyFunc(a, b){
+        out.innerHTML = Number(a.value) * Number(b.value) ;
+    }
+    function divisionFunc(a, b){
+        out.innerHTML = Number(a.value) / Number(b.value) ;
+    }
+
+</script>
+</body>
+</html>
