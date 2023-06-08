@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn" style="display:inline;margin-left:10px;margin-right:10px">click</button>
+<button id="btn2" style="display:inline;margin-left:10px;margin-right:10px">click2</button>
+<button id="btn3" style="display:inline;margin-left:10px;margin-right:10px">click3</button>
+<button id="btn4" style="display:inline;margin-left:10px;margin-right:10px">click4</button>
+<br><br>
+<div id="out"></div>
+
+<script type="text/javascript">
+
+    let arr = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
+
+    let btn = document.getElementById("btn");
+    let btn2 = document.getElementById("btn2");
+    let btn3 = document.getElementById("btn3");
+    let btn4 = document.getElementById("btn4");
+    let out = document.getElementById("out");
+
+    btn.onclick = function () {
+        out.innerHTML = arr[4];
+    }
+    btn2.onclick = function () {
+        outputByOdd(true)
+    };
+    btn3.onclick = function () {
+        outputByOdd(false)
+    };
+
+    function outputByOdd(isOdd) {
+        out.innerHTML = ""
+        for (let i = 0; i < arr.length; i++) {
+            out.innerHTML += (isOdd && arr[i] % 2 === 0) || (!isOdd && arr[i] % 2 !== 0) ? arr[i] + "<br>" : "";
+        }
+    }
+
+    let matrixArr = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9]
+    ];
+    btn4.onclick = function () {
+        out.innerHTML = ""
+        for (let i = matrixArr.length - 1; i >= 0; i--) {
+            for (let j = matrixArr[i].length - 1; j >= 0; j--) {
+                out.innerHTML += matrixArr[i][j] + " ";
+            }
+            out.innerHTML += "<br>";
+        }
+    }
+
+
+</script>
+
+</body>
+</html>
