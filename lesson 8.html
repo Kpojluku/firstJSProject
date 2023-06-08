@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<style>
+    .class1 {
+        margin-top: 50px;
+    }
+    .class2 {
+        margin-left: 100px;
+    }
+    .class3 {
+        background-color: aqua;
+    }
+</style>
+<button id="btn" style="display:inline;margin-left:10px;margin-right:10px">init</button>
+<button id="changeBtn" style="display:inline;margin-left:10px;margin-right:10px">change</button>
+<button id="removeBtn" style="display:inline;margin-left:10px;margin-right:10px">removeStyle</button>
+<br><br/>
+<div class="element"></div>
+
+
+<script type="text/javascript">
+
+    let btn = document.querySelector("#btn");
+    let changeBtn = document.querySelector("#changeBtn");
+    let removeBtn = document.querySelector("#removeBtn");
+    let element = document.querySelector(".element");
+
+    btn.onclick = function () {
+        element.style.width = "1000px";
+        element.style.height = "100px";
+        element.style.border = "1px solid black";
+    }
+    changeBtn.onclick = function () {
+        element.classList.add('class1');
+        element.classList.add('class2');
+        element.classList.add('class3');
+    }
+    removeBtn.onclick = function () {
+        let cssStyles = ["class1", "class2", "class3"];
+        let i = 0;
+        while (i < cssStyles.length) {
+            let randomIndex = Math.floor(Math.random() * cssStyles.length);
+            let randomStyle = cssStyles[randomIndex];
+            if (element.classList.contains(randomStyle)) {
+                element.classList.remove(randomStyle);
+                break;
+            }
+            i++;
+        }
+    }
+
+
+</script>
+
+</body>
+</html>
