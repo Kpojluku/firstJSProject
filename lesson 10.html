@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="out"></div>
+<div id="out2"></div>
+<div id="out3"></div>
+<div id="out33"></div>
+<div id="out4"></div>
+<div id="out5"></div>
+<div id="out6"></div>
+
+<script type="text/javascript">
+
+  fetch("https://api.openweathermap.org/data/2.5/weather?lat=55.7522&lon=37.6156&appid=936e894e61c9cd1d621a63b2fb05cd9a")
+          .then(function(resp){return resp.json()})
+          .then(function(data){
+            console.log(data);
+            document.getElementById("out").textContent = "Скорость ветра: " + data.wind.speed;
+            document.getElementById("out2").textContent = "Влажность: " + data.main.humidity + "%";
+            document.getElementById("out3").textContent = "Страна: " + data.sys.country;
+            document.getElementById("out33").textContent = "Город: " + data.name;
+            let date1 = new Date(data.sys.sunrise * 1000).toLocaleTimeString();
+            document.getElementById("out4").textContent = "Восход: " + date1;
+            let date2 = new Date(data.sys.sunset * 1000).toLocaleTimeString();
+            document.getElementById("out5").textContent = "Закат: " + date2;
+            document.getElementById("out6").innerHTML = `<img src='https://api.openweathermap.org/img/w/${data.weather[0]['icon']}.png'>`
+          })
+
+</script>
+
+</body>
+</html>
