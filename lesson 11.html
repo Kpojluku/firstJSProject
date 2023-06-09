@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input id="inputForm">
+<button id="btn" style="display:inline;margin-left:10px;margin-right:10px">add</button>
+<button id="checkBtn" style="display:inline;margin-left:10px;margin-right:10px">check</button>
+<button id="filterBtn" style="display:inline;margin-left:10px;margin-right:10px">elements greater than 5</button>
+<div id="out"></div>
+
+<script type="text/javascript">
+
+    let input = document.getElementById("inputForm");
+    let out = document.getElementById("out");
+    let btn = document.getElementById("btn");
+    let checkBtn = document.getElementById("checkBtn");
+    let filterBtn = document.getElementById("filterBtn");
+
+    let set = new Set();
+    set.add("e");
+    set.add("r");
+    set.add("i");
+    set.add("k");
+    set.add("t");
+    set.add("h");
+    set.add("e");
+    set.add("b");
+    set.add("e");
+    set.add("s");
+    set.add("t");
+
+    btn.onclick = function () {
+        set.add(isNaN(input.value) ? input.value : Number(input.value));
+        input.value = "";
+        out.innerHTML = "";
+        console.log(set);
+    }
+
+    checkBtn.onclick = function () {
+        out.innerHTML = set.has(isNaN(input.value) ? input.value : Number(input.value));
+    }
+
+    filterBtn.onclick = function () {
+        out.innerHTML = "";
+        for (let key of set) {
+            if (key > 5) {
+                out.innerHTML += key + " ";
+            }
+        }
+    }
+
+
+    console.log(set);
+
+
+</script>
+
+</body>
+</html>
