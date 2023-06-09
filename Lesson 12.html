@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    #out{
+        width: 25px;
+        height: 25px;
+        border: 1px solid black;
+    }
+</style>
+<div id="out"></div>
+<div id="out2">test</div>
+<div id="out4"></div>
+<div id="out5"></div>
+<div id="out3">
+    <img src="https://klike.net/uploads/posts/2022-05/1653201200_1.jpg" style="width:400px;height:300px;">
+</div>
+
+<script type="text/javascript">
+
+    let out = document.getElementById("out");
+    let out2 = document.getElementById("out2");
+    let out3 = document.getElementById("out3");
+    let out4 = document.getElementById("out4");
+    let out5 = document.getElementById("out5");
+
+    let q = 25;
+    out.onclick = function (){
+        out.style.width = q  + "px";
+        out.style.height = q  + "px";
+        q++;
+    }
+    out2.ondblclick = function (){
+        console.log(out2.innerText);
+    }
+    out3.onclick = function (){
+        out3.innerHTML += out3.innerHTML;
+    }
+
+    document.addEventListener('keydown', function(event) {
+        out4.innerHTML = "Нажата кнопка: " + event.key + " с кодом: " + event.keyCode;
+        console.log(event)
+        out5.innerText = "Введена строка: " + (event.code.startsWith("Key"));
+    });
+
+
+</script>
+</body>
+</html>
