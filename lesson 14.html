@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+
+    let a = new Promise((resolve, reject) => {
+        fetch("https://giphy.com/")
+            .then((data) => {
+                console.log(data);
+                resolve(data.text());
+            });
+    });
+    let b = new Promise((resolve, reject) => {
+        fetch("https://www.vk.com/")
+            .then((data) => {
+                console.log(data);
+                resolve(data.text());
+            });
+    });
+
+    Promise.all([a, b]).then(data => {
+        console.log(data);
+    })
+
+
+</script>
+</body>
+</html>
