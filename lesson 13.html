@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="out"></div>
+
+<script type="text/javascript">
+
+  let a = [ 1, 2, 3 ];
+  localStorage.setItem("data", JSON.stringify(a));
+  let b = localStorage.getItem("data");
+  document.getElementById("out").innerHTML = b;
+  b = JSON.parse(b);
+  console.log(typeof b);
+
+  const xHttp = new XMLHttpRequest();
+  xHttp.onreadystatechange = function (){
+    if(this.readyState == 4 && this.state == 200){
+      myFunc(this.responseText);
+    }
+  }
+  xHttp.open("GET", "https://giphy.com/", true);
+  xHttp.send();
+
+  function myFunc(data){
+    console.log(data);
+  }
+
+</script>
+
+</body>
+</html>
