@@ -26,7 +26,7 @@ document.addEventListener('keydown', (event) => {
 
 function addNewTask() {
     const textContent = inputForm.value;
-    if (textContent !== null && !(textContent.trim() === "")) {
+    if (!isStringEmpty(textContent)) {
         replaceDiv();
         saveNewTaskData(textContent);
         refreshList();
@@ -37,7 +37,7 @@ function saveNewTaskData(data) {
     const spanTeg = `<span class="span">${data}</span>`;
     let taskArray = [spanTeg];
     const taskArrayJson = localStorage.getItem(TASK_KEY);
-    if (taskArrayJson !== null) {
+    if (!isStringEmpty(taskArrayJson)) {
         taskArray = JSON.parse(taskArrayJson);
         taskArray.push(spanTeg);
     }
@@ -57,7 +57,7 @@ function addNewRowTask(span) {
 function refreshList() {
     newElement.innerHTML = "";
     const taskArrayJson = localStorage.getItem(TASK_KEY);
-    if (taskArrayJson !== null) {
+    if (!isStringEmpty(taskArrayJson)) {
         replaceDiv();
         const taskArray = JSON.parse(taskArrayJson);
         for (const data of taskArray) {
@@ -81,9 +81,8 @@ function statisticCount() {
 function addListeners() {
     let spans = document.querySelectorAll('.span');
     let deleteButtons = document.querySelectorAll('.delete');
-    console.log(deleteButtons);
     spans.forEach((span, index) => {
-        span.addEventListener('dblclick', () => {
+        span.addEventListener('click', () => {
             if (span.hasAttribute('style')) {
                 span.removeAttribute('style');
             } else {
@@ -106,4 +105,8 @@ function addListeners() {
             refreshList();
         });
     });
+}
+
+function isStringEmpty(str) {
+    return str === null || str.trim() === "";
 }
