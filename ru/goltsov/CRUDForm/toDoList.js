@@ -17,34 +17,6 @@ newElement.classList.add('tasks-content');
 
 refreshList();
 
-const spans = document.querySelectorAll('.span');
-const deleteButtons = document.querySelectorAll('.delete');
-
-spans.forEach((span, index) => {
-    span.addEventListener('dblclick', () => {
-        if (span.hasAttribute('style')) {
-            span.removeAttribute('style');
-        } else {
-            span.setAttribute("style", "text-decoration: line-through");
-        }
-        const taskArrayJson = localStorage.getItem(TASK_KEY);
-        const taskArray = JSON.parse(taskArrayJson);
-        taskArray[index] = span.outerHTML;
-        localStorage.setItem(TASK_KEY, JSON.stringify(taskArray));
-        statisticCount();
-    });
-});
-
-deleteButtons.forEach((deleteBtn, index) => {
-    deleteBtn.addEventListener('click', () => {
-        const taskArrayJson = localStorage.getItem(TASK_KEY);
-        const taskArray = JSON.parse(taskArrayJson);
-        taskArray.splice(index, 1);
-        localStorage.setItem(TASK_KEY, JSON.stringify(taskArray));
-        location.reload();
-    });
-});
-
 btnAdd.addEventListener('click', addNewTask);
 document.addEventListener('keydown', (event) => {
     if (event.code === 'Enter') {
@@ -54,9 +26,11 @@ document.addEventListener('keydown', (event) => {
 
 function addNewTask() {
     const textContent = inputForm.value;
-    replaceDiv();
-    saveNewTaskData(textContent);
-    location.reload();
+    if (textContent !== null && !(textContent.trim() === "")) {
+        replaceDiv();
+        saveNewTaskData(textContent);
+        refreshList();
+    }
 }
 
 function saveNewTaskData(data) {
@@ -91,6 +65,7 @@ function refreshList() {
         }
     }
     statisticCount();
+    addListeners();
 }
 
 function statisticCount() {
@@ -101,4 +76,34 @@ function statisticCount() {
     const taskCompleted = Array.from(spans).filter(f => f.hasAttribute('style')).length;
     taskCountElement.innerHTML = taskCount;
     taskCompletedElement.innerHTML = taskCompleted;
+}
+
+function addListeners() {
+    let spans = document.querySelectorAll('.span');
+    let deleteButtons = document.querySelectorAll('.delete');
+    console.log(deleteButtons);
+    spans.forEach((span, index) => {
+        span.addEventListener('dblclick', () => {
+            if (span.hasAttribute('style')) {
+                span.removeAttribute('style');
+            } else {
+                span.setAttribute("style", "text-decoration: line-through");
+            }
+            const taskArrayJson = localStorage.getItem(TASK_KEY);
+            const taskArray = JSON.parse(taskArrayJson);
+            taskArray[index] = span.outerHTML;
+            localStorage.setItem(TASK_KEY, JSON.stringify(taskArray));
+            statisticCount();
+        });
+    });
+
+    deleteButtons.forEach((deleteBtn, index) => {
+        deleteBtn.addEventListener('click', () => {
+            const taskArrayJson = localStorage.getItem(TASK_KEY);
+            const taskArray = JSON.parse(taskArrayJson);
+            taskArray.splice(index, 1);
+            localStorage.setItem(TASK_KEY, JSON.stringify(taskArray));
+            refreshList();
+        });
+    });
 }
